@@ -6,10 +6,12 @@ import (
 	"fmt"
 	"github.com/docker/go-units"
 	ffi "github.com/filecoin-project/filecoin-ffi"
+	"github.com/filecoin-project/go-paramfetch"
 	"github.com/filecoin-project/go-state-types/abi"
 	"github.com/filecoin-project/lotus/build"
 	"github.com/filecoin-project/lotus/chain/actors/builtin/miner"
 	"github.com/filecoin-project/lotus/chain/types"
+	lcli "github.com/filecoin-project/lotus/cli"
 	logging "github.com/ipfs/go-log/v2"
 	"github.com/urfave/cli/v2"
 	"golang.org/x/xerrors"
@@ -44,6 +46,13 @@ func main() {
 				return err
 			}
 			sectorSize := abi.SectorSize(sectorSizeInt)
+
+			ctx := lcli.ReqContext(c)
+
+			if err := paramfetch.GetParams(ctx, build.ParametersJSON(), build.SrsJSON(), uint64(sectorSize)); err != nil {
+				return xerrors.Errorf("get params: %w", err)
+			}
+
 			wpt, err := spt(sectorSize).RegisteredWindowPoStProof()
 			if err != nil {
 				return err
