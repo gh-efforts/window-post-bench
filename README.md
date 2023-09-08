@@ -3,7 +3,10 @@
 ## Setup
 
 ```shell
-sudo apt install -y hwloc
+sudo apt install -y mesa-opencl-icd ocl-icd-opencl-dev gcc git bzr jq pkg-config curl clang build-essential hwloc libhwloc-dev wget
+
+# install golang && rust
+# more details: https://lotus.filecoin.io/lotus/install/linux/
 ```
 
 ## Build 
