@@ -1,6 +1,6 @@
 module github.com/gh-efforts/window-post-bench
 
-go 1.21
+go 1.20
 
 replace github.com/filecoin-project/filecoin-ffi => ./extern/filecoin-ffi
 
