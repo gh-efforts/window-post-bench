@@ -79,7 +79,7 @@ func main() {
 }
 
 func spt(ssize abi.SectorSize) abi.RegisteredSealProof {
-	spt, err := miner.SealProofTypeFromSectorSize(ssize, build.TestNetworkVersion)
+	spt, err := miner.SealProofTypeFromSectorSize(ssize, build.TestNetworkVersion, false)
 	if err != nil {
 		panic(err)
 	}
